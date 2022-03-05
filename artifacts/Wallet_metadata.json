@@ -1,0 +1,99 @@
+{
+	"compiler": {
+		"version": "0.8.6+commit.11564f7e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "recieve",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_to",
+						"type": "address"
+					}
+				],
+				"name": "transfer",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "TASK Build a wallet using Solidity where users would be able to store, send and receive ether. Hint: Use mappings to store user balances. *",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"week5\\wallet.sol": "Wallet"
+		},
+		"evmVersion": "berlin",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"week5\\wallet.sol": {
+			"keccak256": "0x2e9183a11285a3cad05fbc033502e8708bd164a829ac8e8ce69c3c6a07e4e9b6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://eeb0ee3d390d6246e17d9a15b2d2918865641da8e535e6f33cde49d453765e5a",
+				"dweb:/ipfs/Qmdb8voJqArXXGUNXB5ScEKWUD83xhmjR4Mv2VRwNKhrMT"
+			]
+		}
+	},
+	"version": 1
+}
