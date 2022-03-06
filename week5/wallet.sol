@@ -1,61 +1,60 @@
-// SPDX-License-Identifier: MIT
-pragma solidity >=0.4.22 <0.9.0;
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.9.0;
+
+contract Wallet{
+
+    // receiver ether
+    // send ether
+    // store ether
+    // withdraw ether
+    // Get balance
+    // Get balance in contract
 
 
-/** 
-TASK
+    // Events
+    event Deposit(address _addr, uint amount);
+    event Send(address _addr, uint amount);
+    event Withdraw(address _addr, uint amount);
 
-Build a wallet using Solidity where users would be able to store, send and receive ether.
-
-Hint:
-Use mappings to store user balances. 
-**/
-
-contract Wallet {
-
-    struct WalletData {
-        address addr;
-        uint bal;
+    // Modifiers
+    modifier hasEnough(address _addr, uint _amount){
+        require(balances[_addr] >= _amount, "Insufficient funds");
+        _;
     }
 
-    mapping (address => WalletData) walletList;
-    address owner;
+    // Mapping
+    mapping(address => uint) public balances;
 
-    constructor(){
-        owner = msg.sender;
-        uint balance = address(owner).balance;
-        WalletData memory walletData = WalletData(owner, balance);
-        walletList[owner] = walletData;
+    // Receive Ether
+    receive() external payable{
+        balances[msg.sender] += msg.value;
+        emit Deposit(msg.sender, msg.value);
     }
 
-    // transfer ether out of wallet
-    function transfer (address payable _to) public payable {
-        uint amount = 1 ether;
-        // require(amount <= address(msg.sender).balance, "Insufficient Ether");
-        bool sent = _to.send(amount);
-        require(sent, "Failed to send Ether");
-        uint balance = address(_to).balance + 1;
-        WalletData memory walletData = WalletData(_to, balance);
-        walletList[_to] = walletData;
+    // Send Ether
+    function send(address _receiver, uint _amount) external hasEnough(msg.sender, _amount){
+        balances[_receiver] += _amount;
+        balances[msg.sender] -= _amount;
+        emit Send(_receiver, _amount);
     }
 
-    // recieve ether into walllet
-    function recieve () public  {
-        uint balance = address(this).balance;
-        balance += 1 ether;
+    // Withdraw Ether
+    function withdraw(uint _amount) external hasEnough(msg.sender, _amount){
+        balances[msg.sender] -= _amount;
+        address payable _receiver = payable(msg.sender);
+        (bool sent, ) = _receiver.call{ value:_amount }("");
+        require(sent, "Ether not sent");
+        emit Withdraw(msg.sender, _amount);
     }
 
+    // Get balance
+    function getBalance(address _addr) external view returns(uint){
+        return balances[_addr];
+    }
 
-    // Function to receive Ether. msg.data must be empty
-    receive() external payable {}
-
-    // Fallback function is called when msg.data is not empty
-    fallback() external payable {}
-
-
-    // get ether balance
-    function getBalance (address _address) public view returns(uint){
-        // return walletList[_address].bal;
-        return address(msg.sender).balance;
+    // Get balance in contract 
+    function getContractBalance() external view returns(uint){
+        return address(this).balance;
     }
 }
