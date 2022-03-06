@@ -6,19 +6,86 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Deposit",
+				"type": "event"
 			},
 			{
-				"stateMutability": "payable",
-				"type": "fallback"
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Send",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdraw",
+				"type": "event"
 			},
 			{
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "balances",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_addr",
 						"type": "address"
 					}
 				],
@@ -35,7 +102,31 @@
 			},
 			{
 				"inputs": [],
-				"name": "recieve",
+				"name": "getContractBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "send",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -43,14 +134,14 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address payable",
-						"name": "_to",
-						"type": "address"
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
 					}
 				],
-				"name": "transfer",
+				"name": "withdraw",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -66,7 +157,6 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {},
-			"notice": "TASK Build a wallet using Solidity where users would be able to store, send and receive ether. Hint: Use mappings to store user balances. *",
 			"version": 1
 		}
 	},
@@ -87,11 +177,11 @@
 	},
 	"sources": {
 		"week5\\wallet.sol": {
-			"keccak256": "0x2e9183a11285a3cad05fbc033502e8708bd164a829ac8e8ce69c3c6a07e4e9b6",
-			"license": "MIT",
+			"keccak256": "0x66b19e14ee44aeeb1a7e1d6507bd6c3c282b61dc673a8a0eb5941ea4a00647af",
+			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://eeb0ee3d390d6246e17d9a15b2d2918865641da8e535e6f33cde49d453765e5a",
-				"dweb:/ipfs/Qmdb8voJqArXXGUNXB5ScEKWUD83xhmjR4Mv2VRwNKhrMT"
+				"bzz-raw://17eb38ca2f000cbf75ae93b5b61fbf6bbe91e32d3b0e42ca288cfbcb876c69f1",
+				"dweb:/ipfs/QmWvmd8Q1ro7doAfEMcC4hvJjFAzy1NvSi6ro14KYyQEaC"
 			]
 		}
 	},
